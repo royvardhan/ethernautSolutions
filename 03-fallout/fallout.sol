@@ -16,7 +16,6 @@ contract Fallout {
     allocations[owner] = msg.value;
   }
 
-
   modifier onlyOwner {
 	        require(
 	            msg.sender == owner,
