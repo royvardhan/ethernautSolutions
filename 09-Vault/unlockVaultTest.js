@@ -2,7 +2,7 @@ const { ethers } = require("hardhat");
 const { expect } = require("chai");
 
 describe("Attack", function () {
-  it("Should be able to read the private variables password and username", async function () {
+  it("Should be able to read the private variable password", async function () {
     // Deploy the login contract
     const vaultFactory = await ethers.getContractFactory("vault");
 
@@ -12,13 +12,13 @@ describe("Attack", function () {
     const vaultContract = await vaultFactory.deploy(passwordBytes);
     await vaultContract.deployed();
 
-    // Get the storage at storage slot 0,1
+    // Get the storage at storage slot 1
     const slot1Bytes = await ethers.provider.getStorageAt(
       vaultContract.address,
       1
     );
 
-    // We are able to extract the values of the private variables
+    // We are able to extract the values of the private variable
     expect(ethers.utils.parseBytes32String(slot1Bytes)).to.equal("password");
   });
 });
