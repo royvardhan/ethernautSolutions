@@ -24,3 +24,5 @@ contract Reentrance {
 
   receive() external payable {}
 }
+
+// steal all funds from this contract
